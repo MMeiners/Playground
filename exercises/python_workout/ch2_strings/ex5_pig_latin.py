@@ -21,8 +21,10 @@ def pig_latin(word):
         return 'Not a valid word'
 
 
+""" really need to start using pytest on these exercises...
 print(pig_latin('apple'))
 print(pig_latin('python'))
 print(pig_latin('apple123'))
 print(pig_latin('123'))
 print(pig_latin(['a']))
+"""
