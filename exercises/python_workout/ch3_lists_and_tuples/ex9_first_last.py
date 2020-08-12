@@ -10,8 +10,3 @@ def get_first_last(input_sequence):
         return input_sequence[:1] + input_sequence[-1:]
     except (ValueError, TypeError):
         return 'Something not quite right here...'
-
-
-print(get_first_last([1, 2, 3, 4]))
-print(get_first_last('apple'))
-print(get_first_last({'my', 'set', 'object'}))
