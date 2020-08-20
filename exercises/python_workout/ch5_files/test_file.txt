@@ -1,0 +1,3 @@
+this is line 1
+line 2
+and this is line 3... eof
