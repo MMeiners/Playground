@@ -9,12 +9,10 @@ import os
 def find_longest_word(filename: str) -> str:
     """ Find the longest word in the given file """
     longest_word = ''
-    line_count = 0
 
     try:
         with open(filename, encoding='utf-8') as file:  # big oof here... windows was defaulting cp1252 and crashing
             for line in file:
-                line_count += 1
                 for word in line.strip().split():
                     if len(word) > len(longest_word):
                         longest_word = word
