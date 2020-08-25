@@ -7,6 +7,13 @@ import pathlib
 
 def reverse_lines(read_file: str, write_file: str) -> None:
     """ Reverse the lines found in the read_file and write them out """
-    pass
+
+    source_path = pathlib.Path(read_file)
+    output_path = pathlib.Path(write_file)
+
+    with open(source_path) as source, open(output_path, 'w') as output:
+        for line in source.readlines():
+            output.write(line.rstrip()[::-1] + '\n')
 
 
+reverse_lines('test_file.txt', 'test_reversed.txt')
