@@ -12,7 +12,7 @@ def reverse_lines(read_file: str, write_file: str) -> None:
     output_path = pathlib.Path(write_file)
 
     with open(source_path) as source, open(output_path, 'w') as output:
-        for line in source.readlines():
+        for line in source:
             output.write(line.rstrip()[::-1] + '\n')
 
 
