@@ -16,7 +16,7 @@ def prefix_calculation(math_equation: str):
                          '**': operator.pow,
                          '%': operator.mod}
 
-    operation, left_side, right_side = math_equation.split(maxsplit=3)
+    operation, left_side, right_side = math_equation.split(maxsplit=2)
     left_side = int(left_side)
     right_side = int(right_side)
 
