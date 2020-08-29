@@ -9,8 +9,6 @@ pig = ex5_pig_latin.pig_latin
 def make_pig_latin(filename: str) -> str:
     """ Translate the file into pig latin """
 
-    translation = ''
-
     with open(filename) as file:
 
         translator = (pig(word) for line in file for word in line.split() if pig(word) != 'Not a valid word')
