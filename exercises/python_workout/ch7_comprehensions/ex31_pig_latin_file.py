@@ -2,8 +2,7 @@
 # Input: a text file and file location
 # Output: translated string value
 
-import ex5_pig_latin
-pig = ex5_pig_latin.pig_latin
+from ex5_pig_latin import pig_latin as pig
 
 
 def make_pig_latin(filename: str) -> str:
