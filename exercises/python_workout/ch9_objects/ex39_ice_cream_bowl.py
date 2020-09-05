@@ -18,8 +18,12 @@ class Bowl:
         """ Add a scoop to the bowl """
 
         for a_scoop in scoops:
-            if len(self.contents) < Bowl.MAX_SCOOPS:
+            if len(self.contents) < self.MAX_SCOOPS:
                 self.contents.append(a_scoop)
+
+
+class BigBowl(Bowl):
+    MAX_SCOOPS = 5  # override
 
 
 if __name__ == '__main__':
@@ -27,12 +31,20 @@ if __name__ == '__main__':
     scoop2 = Scoop('Coffee')
     scoop3 = Scoop('Rum Raisin')
     scoop4 = Scoop('Butter Pecan')
+    scoop5 = Scoop('Vanilla')
 
     my_bowl = Bowl()
+    my_big_bowl = BigBowl()
 
     my_bowl.add_scoop(scoop1, scoop2)
     my_bowl.add_scoop(scoop3)
-    my_bowl.add_scoop(scoop4)
+    my_bowl.add_scoop(scoop4, scoop5)
+
+    my_big_bowl.add_scoop(scoop1, scoop2, scoop3, scoop4)
+    my_big_bowl.add_scoop(scoop5, scoop1, scoop2)
 
     print('My bowl has...')
     print(my_bowl)
+
+    print('\n\nMy big bowl has...')
+    print(my_big_bowl)
