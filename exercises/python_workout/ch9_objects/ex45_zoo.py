@@ -15,42 +15,25 @@ class Zoo:
         for cage in cages:
             self.all_cages.append(cage)
 
-    def animals_by_color(self, color: str):
-        same_colored_animals = []
+    def animals_by_color(self, color: str) -> List[animals.Animal]:
+        return [each_animal
+                for each_cage in self.all_cages
+                for each_animal in each_cage.caged_beasts
+                if each_animal.color.lower() == color.lower()]
 
-        for cage in self.all_cages:
-            same_colored_animals.extend(each_animal
-                                        for each_animal in cage.caged_beasts
-                                        if each_animal.color.lower() == color.lower())
+    def animals_by_legs(self, num_of_legs: int) -> List[animals.Animal]:
+        return [each_animal
+                for each_cage in self.all_cages
+                for each_animal in each_cage.caged_beasts
+                if each_animal.number_of_legs == num_of_legs]
 
-        return same_colored_animals
-
-    def animals_by_legs(self, num_of_legs: int):
-        same_legged_animals = []
-
-        for cage in self.all_cages:
-            same_legged_animals.extend(each_animal
-                                       for each_animal in cage.caged_beasts
-                                       if each_animal.number_of_legs == num_of_legs)
-
-        return same_legged_animals
-
-    def number_of_legs(self):
-        total_legs = 0
-
-        for cage in self.all_cages:
-            total_legs += sum(each_animal.number_of_legs for each_animal in cage.caged_beasts)
-
-        return total_legs
+    def number_of_legs(self) -> int:
+        return sum(each_animal.number_of_legs
+                   for each_cage in self.all_cages
+                   for each_animal in each_cage.caged_beasts)
 
     def __repr__(self):
-        report = ''
-
-        for cage in self.all_cages:
-            report += str(cage)
-            report += '\n'
-
-        return report
+        return '\n'.join(str(each_cage) for each_cage in self.all_cages)
 
 
 if __name__ == '__main__':
