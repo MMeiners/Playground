@@ -3,8 +3,11 @@
 # Input: instantiate a few animal child classes
 # Output: string representation of each animal
 
+from typing import List
+
+
 class Animal:
-    def __init__(self, color, number_of_legs):
+    def __init__(self, color: str, number_of_legs: int):
         self.color = color
         self.number_of_legs = number_of_legs
 
@@ -33,9 +36,9 @@ class Parrot(Animal):
 
 
 class Cage:
-    def __init__(self, cage_id):
+    def __init__(self, cage_id: int):
         self.cage_id = cage_id
-        self.caged_beasts = []
+        self.caged_beasts: List[Animal] = []
 
     def add_animals(self, *animals_to_add):
         for beast in animals_to_add:
