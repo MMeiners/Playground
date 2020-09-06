@@ -1,4 +1,5 @@
 # Problem: create a base animal class, and four subclasses able to print out their species, # of legs, and color
+# EDIT: for ex44 adding a cage class
 # Input: instantiate a few animal child classes
 # Output: string representation of each animal
 
@@ -31,8 +32,29 @@ class Parrot(Animal):
         super().__init__(color, 2)
 
 
+class Cage:
+    def __init__(self, cage_id):
+        self.cage_id = cage_id
+        self.caged_beasts = []
+
+    def add_animals(self, *animals_to_add):
+        for beast in animals_to_add:
+            self.caged_beasts.append(beast)
+
+    def __repr__(self):
+        report_header = f'Cage id {self.cage_id} contains\n'
+        report_rows = '\n'.join((f'\t{beast}' for beast in self.caged_beasts))
+        return report_header + report_rows
+
+
 if __name__ == '__main__':
     animals = [Sheep('White'), Sheep('Brown'), Wolf('Black'), Parrot('Red'), Snake('Green')]
 
-    for animal in animals:
-        print(animal)
+    cage1 = Cage(1)
+    cage2 = Cage(2)
+
+    cage1.add_animals(*animals[0:3])
+    cage2.add_animals(*animals[3:])
+
+    print(cage1)
+    print(cage2)
