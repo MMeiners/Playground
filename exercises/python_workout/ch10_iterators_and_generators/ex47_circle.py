@@ -9,10 +9,10 @@ class Circle:
         self.max_iterations = length
 
     def __iter__(self):
-        return CircleIterable(self.data, self.max_iterations)
+        return CircleIterator(self.data, self.max_iterations)
 
 
-class CircleIterable:
+class CircleIterator:
     def __init__(self, sequence, length):
         self.data = sequence
         self.max_iterations = length
