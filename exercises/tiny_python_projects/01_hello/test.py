@@ -1,4 +1,4 @@
-#! python
+#! /usr/bin/env python3.8-64
 """tests for hello.py"""
 
 # edits: book's author was calling 'python3' but not found in venv... copied python.exe to python3.exe in venv dir.
