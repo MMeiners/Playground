@@ -1,12 +1,6 @@
 #! /usr/bin/env python3.8-64
 """tests for hello.py"""
 
-# edits: book's author was calling 'python3' but not found in venv... copied python.exe to python3.exe in venv dir.
-# Windows generally doesn't have a python3 since it doesn't ship with Python 2 like Mac/Linux.
-# Updated the shebang line but unsure if needed in Windows unless using py launcher for some reason.
-# Updated prg string to use backslash instead of slash.
-# Seriously considering installing WSL so I can use bash and avoid changing things to work in cmd
-
 import os
 from subprocess import getstatusoutput, getoutput
 
