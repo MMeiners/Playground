@@ -2,6 +2,7 @@
 """
 Author : Ken Youens-Clark <kyclark@gmail.com>
 Purpose: Python program to write a Python program
+Edit: commented line in main referring to chmod... no such thing in Windows CMD
 """
 
 import argparse
@@ -83,7 +84,7 @@ def main() -> None:
             sys.exit('Will not overwrite. Bye!')
 
     print(body(args), file=open(program, 'wt'), end='')
-    subprocess.run(['chmod', '+x', program])
+    # subprocess.run(['chmod', '+x', program]) # no chmod in Windows CMD
     print(f'Done, see new script "{program}."')
 
 
