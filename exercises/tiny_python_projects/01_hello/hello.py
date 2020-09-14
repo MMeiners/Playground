@@ -1,16 +1,23 @@
 #! /usr/bin/env python3.8-64
-# Purpose: say hello
+"""
+Purpose: say hello
+"""
 
 import argparse
 
 
 def get_args():
+    """ Process arguments """
     parser = argparse.ArgumentParser(description='Say Hello')
-    parser.add_argument('-n', '--name', default='World', metavar='name', help='Name to greet')
+    parser.add_argument('-n', '--name',
+                        default='World',
+                        metavar='name',
+                        help='Name to greet')
     return parser.parse_args()
 
 
 def main():
+    """ Start here """
     args = get_args()
 
     print(f'Hello, {args.name}!')
