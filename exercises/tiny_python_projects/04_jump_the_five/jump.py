@@ -6,6 +6,11 @@ Purpose: Jump the five
 
 import argparse
 
+JUMP_MAP = {'1': '9', '2': '8', '3': '7',
+            '4': '6', '5': '0', '6': '4',
+            '7': '3', '8': '2', '9': '1',
+            '0': '5'}
+
 
 # --------------------------------------------------
 def get_args():
@@ -13,38 +18,13 @@ def get_args():
 
     # noinspection PyTypeChecker
     parser = argparse.ArgumentParser(
-        description='Rock the Casbah',
+        description='Jump the five',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('positional',
+    parser.add_argument('plain_text',
                         metavar='str',
-                        help='A positional argument')
-
-    parser.add_argument('-a',
-                        '--arg',
-                        help='A named string argument',
-                        metavar='str',
-                        type=str,
-                        default='')
-
-    parser.add_argument('-i',
-                        '--int',
-                        help='A named integer argument',
-                        metavar='int',
-                        type=int,
-                        default=0)
-
-    parser.add_argument('-f',
-                        '--file',
-                        help='A readable file',
-                        metavar='FILE',
-                        type=argparse.FileType('rt'),
-                        default=None)
-
-    parser.add_argument('-o',
-                        '--on',
-                        help='A boolean flag',
-                        action='store_true')
+                        help='Input text',
+                        nargs='+')
 
     return parser.parse_args()
 
@@ -54,17 +34,12 @@ def main():
     """ Start here """
 
     args = get_args()
-    str_arg = args.arg
-    int_arg = args.int
-    file_arg = args.file
-    flag_arg = args.on
-    pos_arg = args.positional
+    plain_text = ' '.join(args.plain_text)
 
-    print(f'str_arg = "{str_arg}"')
-    print(f'int_arg = "{int_arg}"')
-    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
-    print(f'flag_arg = "{flag_arg}"')
-    print(f'positional = "{pos_arg}"')
+    encoded_list = [JUMP_MAP.get(letter, letter)
+                    for letter in plain_text]
+
+    print(''.join(encoded_list))
 
 
 # --------------------------------------------------
