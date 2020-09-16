@@ -13,37 +13,17 @@ def get_args():
 
     # noinspection PyTypeChecker
     parser = argparse.ArgumentParser(
-        description='Rock the Casbah',
+        description='Picnic game',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('positional',
+    parser.add_argument('str',
                         metavar='str',
-                        help='A positional argument')
+                        help='Item(s) to bring',
+                        nargs='+')
 
-    parser.add_argument('-a',
-                        '--arg',
-                        help='A named string argument',
-                        metavar='str',
-                        type=str,
-                        default='')
-
-    parser.add_argument('-i',
-                        '--int',
-                        help='A named integer argument',
-                        metavar='int',
-                        type=int,
-                        default=0)
-
-    parser.add_argument('-f',
-                        '--file',
-                        help='A readable file',
-                        metavar='FILE',
-                        type=argparse.FileType('rt'),
-                        default=None)
-
-    parser.add_argument('-o',
-                        '--on',
-                        help='A boolean flag',
+    parser.add_argument('-s',
+                        '--sorted',
+                        help='Sort the items',
                         action='store_true')
 
     return parser.parse_args()
@@ -54,17 +34,20 @@ def main():
     """ Start here """
 
     args = get_args()
-    str_arg = args.arg
-    int_arg = args.int
-    file_arg = args.file
-    flag_arg = args.on
-    pos_arg = args.positional
+    food_list = args.str
+    number_of_items = len(food_list)
 
-    print(f'str_arg = "{str_arg}"')
-    print(f'int_arg = "{int_arg}"')
-    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
-    print(f'flag_arg = "{flag_arg}"')
-    print(f'positional = "{pos_arg}"')
+    if args.sorted:
+        food_list.sort()
+
+    if number_of_items == 1:
+        food_expected = food_list[0]
+    elif number_of_items == 2:
+        food_expected = f'{food_list[0]} and {food_list[1]}'
+    else:
+        food_expected = f'{", ".join(food_list[:-1])}, and {food_list[-1]}'
+
+    print(f'You are bringing {food_expected}.')
 
 
 # --------------------------------------------------
