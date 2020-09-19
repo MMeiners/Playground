@@ -5,6 +5,8 @@ Purpose: Gashlycrumb
 """
 
 import argparse
+import os
+import sys
 
 
 # --------------------------------------------------
@@ -18,6 +20,7 @@ def get_args():
 
     parser.add_argument('letter',
                         metavar='letter',
+                        nargs='+',
                         help='Letter(s)')
 
     parser.add_argument('-f',
@@ -35,6 +38,20 @@ def main():
     """ Start here """
 
     args = get_args()
+    text_lookup = {}
+
+    if os.path.isfile(args.file):
+        with open(args.file) as read_from:
+            for line in read_from:
+                text_lookup[line[0].lower()] = line
+    else:
+        sys.exit(f"No such file or directory: '{args.file}'")
+
+    for letter in args.letter:
+        if letter.lower() in text_lookup:
+            print(text_lookup[letter.lower()], end='')
+        else:
+            print(f'I do not know "{letter}".')
 
 
 # --------------------------------------------------
