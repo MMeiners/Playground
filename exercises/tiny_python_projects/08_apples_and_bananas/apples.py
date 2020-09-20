@@ -5,6 +5,9 @@ Purpose: Substitute vowels from input with a new vowel
 """
 
 import argparse
+import os
+
+VOWELS = 'aeiouAEIOU'
 
 
 # --------------------------------------------------
@@ -36,6 +39,19 @@ def main():
     """ Start here """
 
     args = get_args()
+    new_vowel = args.vowel.lower()
+    text = args.text
+
+    vowel_mappings = {vowel: new_vowel if vowel.islower() else new_vowel.upper()
+                      for vowel in VOWELS}
+    translator = str.maketrans(vowel_mappings)
+
+    if os.path.isfile(text):
+        with open(text, encoding='utf-8') as file:
+            for line in file:
+                print(line.translate(translator), end='')
+    else:
+        print(text.translate(translator))
 
 
 # --------------------------------------------------
