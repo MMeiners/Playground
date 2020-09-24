@@ -32,10 +32,46 @@ def get_args():
 
 
 # --------------------------------------------------
+def sing_verse(bottle_count: int) -> str:
+    """ Sing a verse """
+
+    s = "s" if bottle_count > 1 else ""
+    last_s = "" if bottle_count == 2 else "s"
+    last_call = "No more" if bottle_count == 1 else f"{bottle_count-1}"
+
+    return '\n'.join([f'{bottle_count} bottle{s} of beer on the wall,',
+                      f'{bottle_count} bottle{s} of beer,',
+                      'Take one down, pass it around,',
+                      f'{last_call} bottle{last_s} of beer on the wall!'])
+
+
+# --------------------------------------------------
+def test_verse():
+    """ Test verses """
+
+    last_verse = sing_verse(1)
+    assert last_verse == '\n'.join(['1 bottle of beer on the wall,',
+                                    '1 bottle of beer,',
+                                    'Take one down, pass it around,',
+                                    'No more bottles of beer on the wall!'])
+
+    two_bottles = sing_verse(2)
+    assert two_bottles == '\n'.join(['2 bottles of beer on the wall,',
+                                     '2 bottles of beer,',
+                                     'Take one down, pass it around,',
+                                     '1 bottle of beer on the wall!'])
+
+
+# --------------------------------------------------
 def main():
     """ Start here """
 
     args = get_args()
+
+    for verse_number in range(args.num, 0, -1):
+        print(sing_verse(verse_number))
+        if verse_number > 1:
+            print()
 
 
 # --------------------------------------------------
