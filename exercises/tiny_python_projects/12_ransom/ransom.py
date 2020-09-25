@@ -29,7 +29,31 @@ def get_args():
                         type=int,
                         default=None)
 
-    return parser.parse_args()
+    args = parser.parse_args()
+
+    if os.path.isfile(args.text):
+        with open(args.text) as file:
+            args.text = file.read()
+
+    return args
+
+
+# --------------------------------------------------
+def choose(char):
+    """ Decide if the char should be upper or lowercase """
+    return char.lower() if random.choice([True, False]) else char.upper()
+
+
+# --------------------------------------------------
+def test_choose():
+    """ test choose() """
+    state = random.getstate()
+    random.seed(1)
+    assert choose('a') == 'a'
+    assert choose('b') == 'b'
+    assert choose('c') == 'C'
+    assert choose('d') == 'd'
+    random.setstate(state)
 
 
 # --------------------------------------------------
@@ -37,6 +61,9 @@ def main():
     """ Start here """
 
     args = get_args()
+    random.seed(args.seed)
+    ransom_note = ''.join(map(choose, args.text))
+    print(ransom_note)
 
 
 # --------------------------------------------------
