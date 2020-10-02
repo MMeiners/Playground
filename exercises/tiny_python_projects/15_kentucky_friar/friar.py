@@ -24,6 +24,10 @@ def get_args():
 
     args = parser.parse_args()
 
+    if os.path.isfile(args.text):
+        with open(args.text) as file:
+            args.text = file.read()
+
     return args
 
 
@@ -54,18 +58,10 @@ def main():
     """ Start here """
 
     args = get_args()
-    all_lines = []
 
-    if os.path.isfile(args.text):
-        with open(args.text) as file:
-            all_lines.extend(file.readlines())
-    else:
-        all_lines.append(args.text)
-
-    for line in all_lines:
-        split_line = re.split(r"(\W)", line)
-        fried_words = map(fry_word, split_line)
-        print(''.join(fried_words), end='')
+    for line in args.text.splitlines():
+        fried_words = map(fry_word, re.split(r"(\W)", line))
+        print(''.join(fried_words))
 
 
 # --------------------------------------------------
