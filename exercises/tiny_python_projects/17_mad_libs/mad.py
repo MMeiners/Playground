@@ -5,6 +5,8 @@ Purpose: Mad libs
 """
 
 import argparse
+import re
+import sys
 
 
 # --------------------------------------------------
@@ -38,6 +40,26 @@ def main():
     """ Start here """
 
     args = get_args()
+    substitutions = args.inputs
+    text = args.file.read().strip()
+    args.file.close()
+
+    placeholders = re.findall(r"(<([^<>]+)>)", text)
+
+    if not placeholders:
+        sys.exit(f'"{args.file.name}" has no placeholders.')
+
+    for _, holder_name in placeholders:
+
+        if not substitutions:
+            a_an = 'an' if holder_name[0] in 'aeiou' else 'a'
+            user_choice = input(f"Give me {a_an} {holder_name}: ")
+        else:
+            user_choice = substitutions.pop(0)
+
+        text = re.sub(r"(<([^<>]+)>)", user_choice, text, count=1)
+
+    print(text)
 
 
 # --------------------------------------------------
